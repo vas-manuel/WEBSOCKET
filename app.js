@@ -1,4 +1,28 @@
 const fs = require('fs');
+const WebSocket = require('ws');
+
+const wss = new WebSocket.Server({ port: 8181 });
+console.log("Servidor websocket escuchando en el puerto 8181")
+
+wss.on('connection', function connection(ws) {
+  console.log("Cliente conectado.")
+  ws.on('message', function incoming(message) {
+    console.log("Mensaje recibido: " + message)
+     wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    });
+
+  });
+});
+
+/** ssl
+ * 
+ * 
+ */
+/*
+const fs = require('fs');
 const https = require('https');
 const WebSocket = require('ws');
 
@@ -20,3 +44,4 @@ wss.on('connection', function connection(ws) {
 });
 
 server.listen(8181);
+*/
