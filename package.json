@@ -1,16 +1,21 @@
 {
-  "name": "node-ssl-server",
-  "version": "1.0.0",
-  "description": "Tutorial on using SSL/TLS on development server.",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.3",
-    "ws": "^8.12.0"
-  }
+    "name": "web-socket-server",
+    "version": "1.1.2",
+    "description": "Server para websocket",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start-dev": "npx nodemon -r esm server.js",
+        "start-prod": "pm2 start server_pm2.json && pm2 save",
+        "restart-prod": "((pm2 stop 'web-socket-server' && pm2 delete 'web-socket-server') || echo 'Nothing to kill') && pm2 start server_pm2.json && pm2 save",
+        "stop-prod": "(pm2 stop 'web-socket-server' && pm2 delete 'web-socket-server') || echo 'Nothing to kill'"
+    },
+    "author": "@vramirezp",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "esm": "^3.2.25",
+        "nodemon": "^2.0.22",
+        "socket.io": "^4.6.1"
+    }
 }
