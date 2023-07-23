@@ -1,0 +1,13 @@
+{
+    "apps": [
+        {
+        "name"          : "URBENIC-Websocket-prod",
+        "script"        : "./server.js",
+        "instance_var"  : "URBENICDIR_INSTANCE",
+        "node_args"     : "-r dotenv/config -r esm",
+        "exec_mode"     : "fork",
+        "interpreter"   : "node",
+        "instances"     : 1
+        }
+    ]
+}
